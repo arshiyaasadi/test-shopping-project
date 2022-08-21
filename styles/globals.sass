@@ -1,0 +1,104 @@
+@import "variables"
+@import "mixins"
+
+@font-face
+  font-family: "YekanBakhMedium"
+  font-style: normal
+  font-weight: 400
+  src: url("../public/fonts/yekanBakh/YekanBakhRegular.ttf") format("truetype")
+
+// root
+\:root
+  --background: #F7FAFC
+  --backgroundNavbar: #FFFFFF
+
+  --fontColor: black
+  --primary: #1B4AEF
+  --secondary: #B53DFF
+  --Bunting: #2B303A
+  --ghost: #F8F7FC
+  --white: #FFFFFF
+
+#__next
+  background-color: var(--background)
+
+*,
+::after,
+::before
+  box-sizing: border-box
+  word-spacing: 2px
+  appearance: none
+  -moz-appearance: none
+  -webkit-appearance: none
+  border: none
+  background-color: transparent
+  outline: none
+  box-shadow: none
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+
+html
+  -ms-content-zooming: none
+  -ms-touch-action: pan-x pan-y
+
+html,
+head,
+body
+  touch-action: none
+  -ms-touch-action: none
+  margin: 0
+  padding: 0
+  font-family: $fontFamily, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+
+html
+  width: 100%
+  height: 100%
+
+body
+  touch-action: pan-y pan-x
+  width: 100%
+  height: 100%
+
+#__next
+  width: 100%
+  height: 100%
+
+h1, h2, h3, h4, h5, h6, input, textarea
+  font-family: $fontFamily !important
+
+h1
+  font-weight: 800
+
+h2
+  font-weight: 750
+
+h3
+  font-weight: 700
+
+p
+  font-weight: 400
+  margin: 10px 0
+
+a
+  text-decoration: none
+
+.rtl
+  direction: rtl !important
+
+.ltr
+  direction: ltr !important
+
+//  Toastify
+.Toastify
+  .Toastify__toast-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    .Toastify__toast
+      width: 100%
+      max-width: calc(100% - 50px)
+      border-radius: 7px
+      margin-bottom: 10px
+      @include fontNormal

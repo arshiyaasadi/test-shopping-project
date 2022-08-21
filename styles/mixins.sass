@@ -1,0 +1,64 @@
+@import "variables"
+// AF mixins
+
+@mixin fullFlex()
+  display: flex
+  align-items: center
+  justify-content: center
+
+@mixin font($fontSize: $fontSize ,$fontFamily: $fontFamily ,$fontWeight: $fontWeight ,$fontLineHeight: $fontLineHeight)
+  font-size: $fontSize
+  font-family: $fontFamily
+  font-weight: $fontWeight
+  line-height: $fontLineHeight
+
+@mixin fontLarge()
+  font-family: $fontFamily
+  font-weight: 700
+  font-size: 2rem
+  line-height: 1.25rem
+  color: $gunmetal
+
+@mixin fontNormal()
+  font-family: $fontFamily
+  font-size: 1.5rem
+  font-weight: 400
+  line-height: 1.5rem
+  color: $gunmetal
+
+@mixin fontMedium()
+  font-size: 1rem
+  font-family: $fontFamily
+  font-weight: 400
+  line-height: 1.125rem
+  color: $gunmetal
+
+@mixin textOverFlow()
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  padding-left: 15px
+
+// responsive
+@mixin sm()
+  @media only screen and (max-width: $breakpoint-sm)
+    @content
+
+@mixin md()
+  @media only screen and (max-width: $breakpoint-md)
+    @content
+
+@mixin lg()
+  @media only screen and (max-width: $breakpoint-lg)
+    @content
+
+@mixin xl()
+  @media only screen and (max-width: $breakpoint-xl)
+    @content
+
+
+//custom size for responsive
+@mixin customSize($size)
+  @media only screen and (max-width: $size)
+    @content
+
