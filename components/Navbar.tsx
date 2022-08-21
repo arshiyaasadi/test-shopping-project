@@ -6,6 +6,8 @@ import Image from 'next/image'
 import images from '../public/images'
 import styles from "../styles/components/Layout.module.sass"
 import { useRouter } from 'next/router'
+import { FaShoppingBag } from "react-icons/fa"
+
 
 
 const DashboardNavbar: NextPage = () => {
@@ -16,14 +18,22 @@ const DashboardNavbar: NextPage = () => {
 
     return (
         <>
-            <div className={styles.Navbar}>
+            <header className={styles.Navbar}>
+                {/*
+                *** Shopping Bag
+                */}
                 <div>
-
+                    <span>1</span>
+                    <FaShoppingBag />
                 </div>
+
+                {/*
+                *** Logo
+                */}
                 <div>
-
+                    <Image src={images.logo} alt="logo images" layout="fill" />
                 </div>
-            </div>
+            </header>
         </>
     )
 }
