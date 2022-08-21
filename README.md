@@ -31,6 +31,6 @@ npm start
 
 
 
-Arshiya Asadi
+`Arshiya Asadi`
 
-Email: arshiya-asadi@outlook.com
+Email: `arshiya-asadi@outlook.com`

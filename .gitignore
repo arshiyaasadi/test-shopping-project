@@ -23,8 +23,15 @@ yarn-error.log*
 # vercel
 .vercel
 
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+*.pem
+
 #
 .idea/
 package-lock.json
 yarn.lock
-/.eslintrc.json
