@@ -16,7 +16,6 @@ const Error = ({error, onRefresh}: { error: any, onRefresh: any }) => {
 
     useEffect(() => {
         setErrors(JSON.stringify(error))
-        // console.log(error)
     }, [error])
     return (
         <div className={styles.errorPage}>
@@ -33,7 +32,7 @@ const Error = ({error, onRefresh}: { error: any, onRefresh: any }) => {
 // layout
 const Layout = ({children, onRefresh, error, loading, setNotify}: LayoutDashboardProps) => {
     const router = useRouter()
-    const [errorData, setErrorData] = useState<boolean>(false)
+    const [errorData, setErrorData] = useState<boolean>(true)
     const [isLoading, setIsLoading] = useState<boolean>(loading)
 
     // set notify

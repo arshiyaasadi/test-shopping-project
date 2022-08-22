@@ -1,34 +1,57 @@
 //
 // Home page
 import React from "react"
-import type {NextPage} from 'next'
+import type {GetStaticPropsContext, NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../../styles/pages/Home.module.sass'
 import Layout from "../../components/Layout"
 import ProductItem from "../../components/ProductItem"
-import { data } from "../../utiliy/products.json"
 
-const Product: NextPage = () => {
+// redux
+import {wrapper} from "../../store"
+import {fetchProductRequest} from "../../store/app/actions"
+import {END} from "redux-saga"
+
+const Product: NextPage = ({product}: any) => {
     return (
         <Layout>
             <Head>
-                <title>Shopping website | {data[0]?.title}</title>
+                <title>Shopping website | {product?.title}</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
             <div className={styles.main}>
                 <h1 className={styles.title}>
-                    {data[0]?.title}
+                    {product?.title}
                 </h1>
 
                 <div className={styles.productContainer}>
                     {
-                        <ProductItem productData={data[0]} />
+                        <ProductItem productData={product} />
                     }
                 </div>
             </div>
         </Layout>
     )
 }
+
+export const getServerSideProps = wrapper.getStaticProps(
+    (store: any) => async (context: GetStaticPropsContext) => {
+        const {query: {productId}}: any = context
+
+    //
+    // check Data
+    if (!store.getState()?.appData?.products?.length) {
+        store.dispatch(fetchProductRequest())
+        store.dispatch(END)
+    }
+
+    // await in saga
+    await store.sagaTask.toPromise()
+
+
+    const product = await store.getState()?.appData?.products.filter((item: any)=> item?._id === productId)[0]
+    return {props: {...store.getState(), product}, }
+})
 
 export default Product

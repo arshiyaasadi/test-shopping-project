@@ -47,7 +47,6 @@ const Home: NextPage = ({ appData }: any) => {
 export const getServerSideProps = wrapper.getStaticProps((store: any) => async () => {
     //
     // check Data
-    console.log(store.getState()?.appData)
     if (!store.getState()?.appData?.products?.length) {
         store.dispatch(fetchProductRequest())
         store.dispatch(END)
