@@ -1,3 +1,6 @@
+//
+// Home page
+import React from "react"
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/pages/Home.module.sass'
@@ -5,7 +8,6 @@ import Layout from "../components/Layout"
 import ProductItem from "../components/ProductItem"
 import { data } from "../utiliy/products.json"
 import { Product } from "../types/globalTypes"
-import React from "react";
 
 const Home: NextPage = () => {
     return (

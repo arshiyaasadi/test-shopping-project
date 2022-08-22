@@ -1,0 +1,73 @@
+@import "../mixins"
+@import "../variables"
+
+.cartContainer
+  width: 100%
+  display: grid
+  grid-template-columns: 2fr 1fr
+  gap: 36px
+  max-width: 1440px
+  @include sm
+    grid-template-columns: 1fr
+  .cartInfo
+    padding: 1rem
+    display: flex
+    align-items: center
+    flex-direction: column
+    gap: 20px
+    height: max-content
+    > div
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 20px
+  .cartOrders
+    width: 100%
+    padding: 1rem
+    display: flex
+    align-items: center
+    flex-direction: column
+    gap: 20px
+    > div
+      width: 100%
+      height: 120px
+      @include fullFlex
+      justify-content: flex-start
+      border: 1px solid black
+      border-radius: 8px
+      > div
+        height: 100%
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: space-between
+        > div
+          width: 100%
+          height: 100%
+          padding: 0 1rem
+          &:first-child
+            display: flex
+            justify-content: center
+            flex-direction: column
+            gap: 8px
+          &:last-child
+            display: flex
+            align-items: center
+            justify-content: space-around
+            gap: 6px
+            max-width: max-content
+            > span
+              width: 25px
+              height: 25px
+              @include fullFlex
+              border: 1px solid black
+              border-radius: 6px
+              cursor: pointer
+              &:nth-child(2)
+                border: none
+      > span
+        width: 100%
+        height: 100%
+        max-width: 120px
+        position: relative

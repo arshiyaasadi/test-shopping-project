@@ -5,12 +5,17 @@ import styles from "../styles/components/Product.module.sass"
 import Image from "next/image"
 import images from "../public/images"
 import {Product} from "../types/globalTypes"
+import {useRouter} from "next/router"
 
 const ProductItem = ({ productData }: { productData: Product }) => {
+    const router = useRouter()
     const {_id, title, price, category, description, createdBy, image} = productData
 
+    const handelRouter = (url: string) => {
+        router.push(url)
+    }
     return (
-        <div className={styles.cardContainer} key={_id}>
+        <div key={_id} className={styles.cardContainer}>
             {/*
             *** Header
             */}
@@ -32,7 +37,8 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                 {/*
                 *** Information
                 */}
-                <div className={styles.productInfo}>
+                <div className={styles.productInfo}
+                     onClick={()=> handelRouter(`/product/${_id}`)}>
                     <div>
                         <span>
                             {

@@ -7,6 +7,7 @@ import images from '../public/images'
 import styles from "../styles/components/Layout.module.sass"
 import { useRouter } from 'next/router'
 import { FaShoppingBag } from "react-icons/fa"
+import Link from 'next/link'
 
 
 
@@ -23,8 +24,12 @@ const DashboardNavbar: NextPage = () => {
                 *** Shopping Bag
                 */}
                 <div>
-                    <span>1</span>
-                    <FaShoppingBag />
+                    <Link href="/cart" >
+                        <a>
+                            <span>1</span>
+                            <FaShoppingBag />
+                        </a>
+                    </Link>
                 </div>
 
                 {/*
