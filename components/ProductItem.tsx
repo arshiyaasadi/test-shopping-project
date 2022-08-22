@@ -28,7 +28,7 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                         image ? (
                             <img src={image} alt={"product"} />
                         ) : (
-                            // Show default product image
+                            // Show default app image
                             <Image src={images.product} alt={`item: ${title}`} />
                         )
                     }
@@ -45,7 +45,7 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                                 image ? (
                                     <Image src={image} alt={`item: ${title}`} />
                                 ) : (
-                                    // Show default product image
+                                    // Show default app image
                                     <Image src={images.product} alt={`item: ${title}`} />
                                 )
                             }
