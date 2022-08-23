@@ -3,14 +3,14 @@ import { all, call, put, takeLatest } from "redux-saga/effects"
 
 import {fetchProductFailure, fetchCartItem, fetchProductSuccess} from "./actions"
 import { FETCH_PRODUCT_REQUEST, FETCH_CART_LIST } from "../actionTypes"
-import {Cart, FetchCartList, FetchCartListPayload, Product} from "../../types/globalTypes"
+import {FetchCartList, Product} from "../../types/globalTypes"
 
 const getProducts = () =>
     axios.get<Product[]>("https://api.storerestapi.com/products")
 
 function* fetchProductSaga() {
     try {
-        let response: any;
+        let response: any
         // @ts-ignore
         response = yield call(getProducts)
         yield put(
@@ -40,8 +40,5 @@ export function* productSaga() {
 }
 
 export function* cartListHandlerSaga() {
-    // @ts-ignore
     yield all([takeLatest(FETCH_CART_LIST, fetchCartItemSaga)])
 }
-
-// export default productSaga

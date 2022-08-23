@@ -13,6 +13,7 @@ import {fetchProductRequest} from "../../store/app/actions"
 import {END} from "redux-saga"
 
 const Product: NextPage = ({product}: any) => {
+
     return (
         <Layout>
             <Head>
@@ -50,7 +51,7 @@ export const getServerSideProps = wrapper.getStaticProps(
     await store.sagaTask.toPromise()
 
 
-    const product = await store.getState()?.appData?.products.filter((item: any)=> item?._id === productId)[0]
+    const product = await store.getState()?.appData?.products.find((item: any)=> item?._id === productId)
     return {props: {...store.getState(), product}, }
 })
 

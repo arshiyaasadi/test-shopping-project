@@ -1,7 +1,7 @@
 //
 // Home page
-import React, { useEffect } from "react"
-import type {NextPage, GetServerSideProps} from 'next'
+import React from "react"
+import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/pages/Home.module.sass'
 import Layout from "../components/Layout"

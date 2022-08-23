@@ -1,6 +1,6 @@
 //
 // Cart page
-import React, {useEffect, useState} from "react"
+import React from "react"
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../../styles/pages/Cart.module.sass'

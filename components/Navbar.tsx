@@ -14,7 +14,6 @@ import {getCartSelector} from "../store/app/selectors";
 
 
 const DashboardNavbar: NextPage = () => {
-    const router = useRouter()
     const cart = useSelector(getCartSelector)
 
     return (
