@@ -1,19 +1,39 @@
 //
 // Products card
-import React from "react"
+import React, {useEffect, useState} from "react"
 import styles from "../styles/components/Product.module.sass"
 import Image from "next/image"
 import images from "../public/images"
-import {Product} from "../types/globalTypes"
+import {Cart, Product} from "../types/globalTypes"
 import {useRouter} from "next/router"
+
+// redux
+import {useDispatch, useSelector} from "react-redux"
+import { fetchCartItem } from "../store/app/actions"
+import {getCartSelector} from "../store/app/selectors";
 
 const ProductItem = ({ productData }: { productData: Product }) => {
     const router = useRouter()
+    const dispatch = useDispatch()
+    const cart = useSelector(getCartSelector)
     const {_id, title, price, category, description, createdBy, image} = productData
 
+    // link handler
     const handelRouter = (url: string) => {
         router.push(url)
     }
+
+    // Check exist item in cart
+    const isProductInCart = () => {
+        return cart.find((item: Cart) => item._id === _id)
+    }
+
+    // Add or remove Item from cart in redux
+    const changeCartItemStatus = (number: number, product: Product | any) =>{
+        dispatch(fetchCartItem({number, product}))
+    }
+
+
     return (
         <div key={_id} className={styles.cardContainer}>
             {/*
@@ -67,19 +87,29 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                 <div>
                     <span>
                         {description}
-                    </span>
-                    <div className={styles.rate}>
                         <div>
-                            <div>
                                 category:
                                 <span>
                                     {category?.name}
                                 </span>
                             </div>
-                            <div>
-                                <span>
-                                   buy
-                                </span>
+                    </span>
+                    <div className={styles.rate}>
+                        <div>
+                            <div className={styles.buyBtn}>
+                                    {
+                                        isProductInCart() ? (
+                                            <>
+                                                <span onClick={()=> changeCartItemStatus(-1, productData)}>-</span>
+                                                <span>{isProductInCart()?.number}</span>
+                                                <span onClick={()=> changeCartItemStatus(+1, productData)}>+</span>
+                                            </>
+                                        ) : (
+                                            <span onClick={()=> changeCartItemStatus(+1, productData)}>
+                                                Buy
+                                            </span>
+                                        )
+                                    }
                             </div>
                         </div>
                         <div>

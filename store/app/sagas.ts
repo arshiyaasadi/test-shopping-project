@@ -1,9 +1,9 @@
 import axios from "axios"
 import { all, call, put, takeLatest } from "redux-saga/effects"
 
-import { fetchProductFailure, fetchProductSuccess } from "./actions"
-import { FETCH_PRODUCT_REQUEST } from "../actionTypes"
-import { Product } from "../../types/globalTypes"
+import {fetchProductFailure, fetchCartItem, fetchProductSuccess} from "./actions"
+import { FETCH_PRODUCT_REQUEST, FETCH_CART_LIST } from "../actionTypes"
+import {Cart, FetchCartList, FetchCartListPayload, Product} from "../../types/globalTypes"
 
 const getProducts = () =>
     axios.get<Product[]>("https://api.storerestapi.com/products")
@@ -23,12 +23,25 @@ function* fetchProductSaga() {
             fetchProductFailure({
                 error: e,
             })
-        );
+        )
     }
 }
 
-function* productSaga() {
+function* fetchCartItemSaga(action: FetchCartList) {
+    const {number, product} = action?.payload
+    fetchCartItem({
+        number,
+        product
+    })
+}
+
+export function* productSaga() {
     yield all([takeLatest(FETCH_PRODUCT_REQUEST, fetchProductSaga)])
 }
 
-export default productSaga
+export function* cartListHandlerSaga() {
+    // @ts-ignore
+    yield all([takeLatest(FETCH_CART_LIST, fetchCartItemSaga)])
+}
+
+// export default productSaga

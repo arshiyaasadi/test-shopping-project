@@ -118,6 +118,13 @@
           color: gray
           line-height: 25px
           padding: 0 16px 16px
+        >div
+          @include fontMedium
+          @include fullFlex
+          color: rgb(179, 179, 179)
+          >span
+            color: rgb(102, 102, 102)
+            margin-left: 4px
 
   .rate
     width: 100%
@@ -132,13 +139,6 @@
         justify-content: space-between
         border-left: 1px solid rgb(236, 236, 236)
         padding-left: 8px
-        >div
-          @include fontMedium
-          @include fullFlex
-          color: rgb(179, 179, 179)
-          >span
-            color: rgb(102, 102, 102)
-            margin-left: 4px
 
       &:nth-of-type(2)
         width: 100%
@@ -151,6 +151,18 @@
         >span
           color: rgb(102, 102, 102)
           margin-left: 4px
+      .buyBtn
+        @include fullFlex
+        gap: 4px
+        > span
+          @include fullFlex
+          color: green
+          cursor: pointer
+          border-radius: 6px
+          border: 1px solid green
+          padding: 6px
+          > span
+            color: green !important
   .cardCover
     width: 100%
     height: auto

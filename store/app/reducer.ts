@@ -1,6 +1,13 @@
-import { FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAILURE, FETCH_CART_FAILURE } from "../actionTypes"
+import {
+    FETCH_PRODUCT_REQUEST,
+    FETCH_PRODUCT_SUCCESS,
+    FETCH_PRODUCT_FAILURE,
+    FETCH_CART_LIST
+} from "../actionTypes"
 
-import { ProductActions, ProductState } from "../../types/globalTypes"
+import {Cart, FetchCartList, FetchCartListPayload, Product, ProductActions, ProductState} from "../../types/globalTypes"
+import cart from "../../pages/cart";
+import {fetchCartItem} from "./actions";
 
 // store items
 const initialState: ProductState = {
@@ -31,10 +38,62 @@ export default (state = initialState, action: ProductActions) => {
                 products: [],
                 error: action.payload.error,
             }
-        case FETCH_CART_FAILURE:
-            return {
-                ...state,
-                cart: action.payload.cart
+        case FETCH_CART_LIST:
+            // Get data from payload
+            const {number, product}: FetchCartListPayload = action.payload
+
+            // Check exist item in cart
+            const isExist: any = state.cart.find((item: Cart) => item._id === product?._id)
+
+            let newCart: Cart[] | any = [...state.cart]
+            let newCartItem: Cart = {
+                _id: product?._id,
+                number: number,
+                item: product,
+                createdAt: new Date()
+            }
+
+            // Add to cart
+            if (number === 1) {
+                if (isExist) {
+                    newCart = state.cart.map((item: Cart) => {
+                        if(item._id === isExist._id) {
+                            // @ts-ignore
+                            item.number += number
+                            return item
+                        } else{
+                            return item
+                        }
+                    })
+                }
+                else {
+                    newCart = [...newCart, newCartItem]
+                }
+                return {
+                    ...state,
+                    cart: newCart
+                }
+            }
+            // Remover to cart
+            else {
+                if (isExist && isExist?.number > 1) {
+                    newCart = state.cart.map((item: Cart) => {
+                        if(item._id === isExist._id) {
+                            // @ts-ignore
+                            item.number += number
+                            return item
+                        } else{
+                            return item
+                        }
+                    })
+                }
+                else {
+                    newCart.splice(isExist, 1)
+                }
+                return {
+                    ...state,
+                    cart: newCart
+                }
             }
         default:
             return {

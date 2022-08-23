@@ -44,15 +44,16 @@ export interface Product {
 import {
     FETCH_PRODUCT_REQUEST,
     FETCH_PRODUCT_SUCCESS,
-    FETCH_PRODUCT_FAILURE, FETCH_CART_FAILURE,
+    FETCH_PRODUCT_FAILURE,
+    FETCH_CART_LIST,
 } from "../store/actionTypes"
 
 
 export interface Cart {
-    _id?: string
-    Number?: number
+    _id?: any | string
+    number?: number
     item?: Product
-    createdAt?: null | string
+    createdAt?: any | string
 }
 
 export interface ProductState {
@@ -62,35 +63,42 @@ export interface ProductState {
     cart: Cart[]
 }
 
+//
 export interface FetchProductSuccessPayload {
     products: Product[]
-}
-
-export interface FetchProductFailurePayload {
-    error: string;
-}
-
-export interface FetchCartFailurePayload {
-    cart: Cart[];
-}
-
-export interface FetchProductRequest {
-    type: typeof FETCH_PRODUCT_REQUEST
 }
 
 export type FetchProductSuccess = {
     type: typeof FETCH_PRODUCT_SUCCESS
     payload: FetchProductSuccessPayload
-};
+}
+
+//
+export interface FetchProductFailurePayload {
+    error: string
+}
 
 export type FetchProductFailure = {
     type: typeof FETCH_PRODUCT_FAILURE
     payload: FetchProductFailurePayload
 }
 
-export type FetchCartFailure = {
-    type: typeof FETCH_CART_FAILURE
-    payload: FetchCartFailurePayload
+//
+export interface FetchCartListPayload {
+    product?: Product
+    number?: number
 }
 
-export type ProductActions = | FetchProductRequest | FetchProductSuccess | FetchProductFailure | FetchCartFailure
+export type FetchCartList = {
+    type: typeof FETCH_CART_LIST
+    payload: FetchCartListPayload
+}
+
+export interface FetchProductRequest {
+    type: typeof FETCH_PRODUCT_REQUEST
+}
+
+
+
+
+export type ProductActions = | FetchProductRequest | FetchProductSuccess | FetchProductFailure | FetchCartList

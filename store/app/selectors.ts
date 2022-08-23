@@ -11,8 +11,7 @@ export const getProductSelector = createSelector(getProducts, (products: any) =>
 const getError = (state: AppState) => state.appData.error
 export const getErrorSelector = createSelector(getError, (error) => error)
 
-
-const getCart = (state: AppState) => state.appData.error
+const getCart = (state: AppState) => state.appData.cart
 export const getCartSelector = createSelector(getCart, (cart) => cart)
 
 

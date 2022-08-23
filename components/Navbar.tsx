@@ -8,14 +8,14 @@ import styles from "../styles/components/Layout.module.sass"
 import { useRouter } from 'next/router'
 import { FaShoppingBag } from "react-icons/fa"
 import Link from 'next/link'
+import {useSelector} from "react-redux";
+import {getCartSelector} from "../store/app/selectors";
 
 
 
 const DashboardNavbar: NextPage = () => {
     const router = useRouter()
-
-    useEffect( ()=> {
-    }, [])
+    const cart = useSelector(getCartSelector)
 
     return (
         <>
@@ -26,7 +26,7 @@ const DashboardNavbar: NextPage = () => {
                 <div>
                     <Link href="/cart" >
                         <a>
-                            <span>1</span>
+                            <span>{cart?.length ? cart?.length : ''}</span>
                             <FaShoppingBag />
                         </a>
                     </Link>
