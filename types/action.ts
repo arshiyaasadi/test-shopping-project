@@ -1,46 +1,6 @@
 //
-// Global Types
-
-export interface ToastMessageProps {
-    type: string,
-    message: string
-}
-
-export interface LayoutDashboardProps {
-    children: any,
-    onRefresh?: any,
-    error?: any,
-    loading?: any,
-    setNotify?: any
-}
-
-export interface Category {
-    _id?: string
-    name?: string
-    slug?: string
-}
-
-export interface Creator {
-    role?: string
-    _id?: string
-    name?: string
-}
-
-export interface Product {
-    _id?: null | string
-    title?: null | string
-    price?: null |string | number
-    category?: null | Category
-    description?: null | string
-    createdBy?: null | Creator
-    createdAt?: null | string
-    updatedAt?: null | string
-    slug?: null | string
-    image?: null | string
-}
-
-
 // action types
+import { Product } from './global'
 import {
     FETCH_PRODUCT_REQUEST,
     FETCH_PRODUCT_SUCCESS,
@@ -48,7 +8,6 @@ import {
     FETCH_CART_LIST,
     FETCH_CART_DATA,
 } from "../store/actionTypes"
-
 
 export interface Cart {
     _id?: any | string
@@ -107,8 +66,6 @@ export type FetchCartData = {
 export interface FetchProductRequest {
     type: typeof FETCH_PRODUCT_REQUEST
 }
-
-
 
 
 export type ProductActions = | FetchProductRequest | FetchProductSuccess | FetchProductFailure | FetchCartList | FetchCartData

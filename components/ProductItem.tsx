@@ -1,21 +1,22 @@
 //
 // Products card
-import React, {useEffect, useState} from "react"
+import React from "react"
 import styles from "../styles/components/Product.module.sass"
 import Image from "next/image"
 import images from "../public/images"
-import {Cart, Product} from "../types/globalTypes"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
+import { Product } from "../types/global"
+import { Cart } from "../types/action"
 
 // redux
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchCartItem } from "../store/app/actions"
-import {getCartSelector} from "../store/app/selectors";
+import { getCartSelector } from "../store/app/selectors"
 
 const ProductItem = ({ productData }: { productData: Product }) => {
     const router = useRouter()
     const dispatch = useDispatch()
-    const cart = useSelector(getCartSelector)
+    const cart: Cart[] = useSelector(getCartSelector)
     const {_id, title, price, category, description, createdBy, image} = productData
 
     // link handler
@@ -36,13 +37,9 @@ const ProductItem = ({ productData }: { productData: Product }) => {
 
     return (
         <div key={_id} className={styles.cardContainer}>
-            {/*
-            *** Header
-            */}
+            {/* Header */}
             <div className={styles.cardImage}>
-                {/*
-                *** Image
-                */}
+                {/* Image */}
                 <span className={styles.cardCover}>
                     {
                         image ? (
@@ -54,9 +51,7 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                     }
                 </span>
 
-                {/*
-                *** Information
-                */}
+                {/* Information */}
                 <div className={styles.productInfo}
                      onClick={()=> handelRouter(`/product/${_id}`)}>
                     <div>
@@ -79,9 +74,7 @@ const ProductItem = ({ productData }: { productData: Product }) => {
                 </div>
             </div>
 
-            {/*
-            *** Description
-            */}
+            {/* Description */}
             <div>
                 <p>{title}</p>
                 <div>

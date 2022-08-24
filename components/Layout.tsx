@@ -1,22 +1,24 @@
 //
 // Layout for all pages
 //
-import React, {useCallback, useEffect, useState} from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import styles from "../styles/components/Layout.module.sass"
 import toast from "./Toast"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import Loading from "./Loading"
 import Navbar from "./Navbar"
-import {LayoutDashboardProps, ToastMessageProps} from "../types/globalTypes"
+import { LayoutDashboardProps, ToastMessageProps } from "../types/global"
 
 
 // error handler
 const Error = ({error, onRefresh}: { error: any, onRefresh: any }) => {
     const [errors, setErrors] = useState<string>('')
 
+    // Stringify text error
     useEffect(() => {
         setErrors(JSON.stringify(error))
     }, [error])
+
     return (
         <div className={styles.errorPage}>
             <p>{errors}</p>
@@ -64,9 +66,7 @@ const Layout = ({children, onRefresh, error, loading, setNotify}: LayoutDashboar
     }, [error])
 
     // set page setting after load
-    useEffect(() => {
-
-    }, [])
+    useEffect(() => {}, [])
 
     return (
         <div className={styles.AF_app}>

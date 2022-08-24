@@ -1,17 +1,17 @@
+//
 // Navbar for use in Layout.ts
 
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {NextPage} from "next"
 import Image from 'next/image'
 import images from '../public/images'
 import styles from "../styles/components/Layout.module.sass"
-import { useRouter } from 'next/router'
 import { FaShoppingBag } from "react-icons/fa"
 import Link from 'next/link'
-import {useDispatch, useSelector} from "react-redux";
-import {getCartSelector} from "../store/app/selectors";
-import {fetchCartData} from "../store/app/actions";
-import {Cart} from "../types/globalTypes";
+import { useDispatch, useSelector } from "react-redux"
+import { getCartSelector } from "../store/app/selectors"
+import { fetchCartData } from "../store/app/actions"
+import { Cart } from "../types/action"
 
 
 
@@ -39,16 +39,12 @@ const DashboardNavbar: NextPage = () => {
     return (
         <>
             <header className={styles.Navbar}>
-                {/*
-                *** Logo
-                */}
+                {/* Logo */}
                 <div>
                     <Image src={images.logo} alt="logo images" layout="fill" />
                 </div>
 
-                {/*
-                *** Shopping Bag
-                */}
+                {/* Shopping Bag */}
                 <div>
                     <Link href="/cart" >
                         <a>

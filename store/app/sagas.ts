@@ -3,7 +3,8 @@ import { all, call, put, takeLatest } from "redux-saga/effects"
 
 import {fetchProductFailure, fetchCartItem, fetchProductSuccess} from "./actions"
 import { FETCH_PRODUCT_REQUEST, FETCH_CART_LIST } from "../actionTypes"
-import {FetchCartList, Product} from "../../types/globalTypes"
+import { Product } from "../../types/global"
+import { FetchCartList } from "../../types/action"
 
 const getProducts = () =>
     axios.get<Product[]>("https://api.storerestapi.com/products")

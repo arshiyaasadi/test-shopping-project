@@ -1,27 +1,27 @@
 //
 // Home page
 import React, {useState} from "react"
-import type {NextPage} from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/pages/Home.module.sass'
 import Layout from "../components/Layout"
 import ProductItem from "../components/ProductItem"
-import { Product } from "../types/globalTypes"
+import { Product } from "../types/global"
 
 // redux
 import { useSelector } from "react-redux"
 import { END } from "redux-saga"
 import { wrapper } from '../store'
-import {getPendingSelector, getErrorSelector,} from "../store/app/selectors"
+import { getPendingSelector, getErrorSelector } from "../store/app/selectors"
 import { fetchProductRequest } from "../store/app/actions"
 
 const Home: NextPage = ({ appData }: any) => {
-    const {products}: any = appData
+    const {products}: Product[] | any = appData
 
     const pending = useSelector(getPendingSelector)
     const error = useSelector(getErrorSelector)
 
-    // search
+    // Search handler
     const [searchValue, setSearchValue] = useState<string>('')
     const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
         const {value}: string | any = e.target
@@ -65,7 +65,6 @@ const Home: NextPage = ({ appData }: any) => {
         </Layout>
     )
 }
-
 
 export const getServerSideProps = wrapper.getStaticProps((store: any) => async () => {
     //

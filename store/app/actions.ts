@@ -15,7 +15,7 @@ import {
     FetchCartListPayload,
     FetchCartDataPayload,
     FetchCartData
-} from "../../types/globalTypes"
+} from "../../types/action"
 
 export const fetchProductRequest = (): FetchProductRequest => ({
     type: FETCH_PRODUCT_REQUEST,

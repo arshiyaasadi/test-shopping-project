@@ -6,7 +6,7 @@ import {
     FETCH_CART_LIST
 } from "../actionTypes"
 
-import {Cart, FetchCartListPayload, ProductActions, ProductState} from "../../types/globalTypes"
+import { Cart, FetchCartListPayload, ProductActions, ProductState } from "../../types/action"
 
 // store items
 const initialState: ProductState = {

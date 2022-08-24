@@ -1,7 +1,7 @@
 //
 // Cart page
 import React from "react"
-import type {NextPage} from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../../styles/pages/Cart.module.sass'
 import Layout from "../../components/Layout"
@@ -10,16 +10,17 @@ import images from "../../public/images"
 
 // redux
 import { useDispatch, useSelector } from "react-redux"
-import {getCartSelector} from "../../store/app/selectors"
+import { getCartSelector } from "../../store/app/selectors"
 import { fetchCartItem } from "../../store/app/actions"
-import {Cart, Product} from "../../types/globalTypes"
+import { Product } from "../../types/global"
+import { Cart } from "../../types/action"
 
 const Cart: NextPage = () => {
     const dispatch = useDispatch()
-    const cart = useSelector(getCartSelector)
+    const cart: Cart[] = useSelector(getCartSelector)
 
     // Add or remove Item from cart in redux
-    const changeCartItemStatus = (number: number, product: Product | any) =>{
+    const changeCartItemStatus = (number: number, product: Product | undefined) =>{
         dispatch(fetchCartItem({number, product}))
     }
 
@@ -27,6 +28,7 @@ const Cart: NextPage = () => {
     const getTotal = () => {
         return cart.reduce((total: any, item: any) => total + (+item.number * +item.item.price), 0)
     }
+
     return (
         <Layout>
             <Head>
@@ -41,9 +43,7 @@ const Cart: NextPage = () => {
 
                 <div className={styles.cartContainer}>
 
-                    {/*
-                    *** Cart order section
-                    */}
+                    {/* Cart order section */}
                     <div className={styles.cartOrders}>
                         {
                             cart.map((item: Cart, index: number)=> {
@@ -58,8 +58,10 @@ const Cart: NextPage = () => {
                                                 <span>price: {item?.item?.price}$</span>
                                             </div>
                                             <div>
+                                                {/* Remove from cart */}
                                                 <span onClick={()=> changeCartItemStatus(-1, item?.item)}>-</span>
                                                 <span>{item?.number}</span>
+                                                {/* Add to cart */}
                                                 <span onClick={()=> changeCartItemStatus(+1, item?.item)}>+</span>
                                             </div>
                                         </div>
@@ -69,9 +71,7 @@ const Cart: NextPage = () => {
                         }
                     </div>
 
-                    {/*
-                    *** Cart info section
-                    */}
+                    {/* Cart info section */}
                     <div className={styles.cartInfo}>
                         <div>
                             <span>total cart</span>

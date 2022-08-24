@@ -1,3 +1,6 @@
+//
+// Toast Alarm
+
 import React from "react"
 import PropTypes from "prop-types"
 import { toast } from "react-toastify"
@@ -8,7 +11,7 @@ import {
     FaBug,
     FaExclamationCircle
 } from "react-icons/fa"
-import { ToastMessageProps } from "../types/globalTypes"
+import { ToastMessageProps } from "../types/global"
 
 export const displayIcon = (type: string) => {
     switch (type) {
@@ -45,13 +48,13 @@ const ToastMessage = ({ type, message }: ToastMessageProps) =>
                 {message}
             </div>
         </div>
-    );
+    )
 
 ToastMessage.propTypes = {
     message: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
-};
+}
 
-ToastMessage.dismiss = toast.dismiss;
+ToastMessage.dismiss = toast.dismiss
 
-export default ToastMessage;
+export default ToastMessage

@@ -8,9 +8,9 @@ import Layout from "../../components/Layout"
 import ProductItem from "../../components/ProductItem"
 
 // redux
-import {wrapper} from "../../store"
-import {fetchProductRequest} from "../../store/app/actions"
-import {END} from "redux-saga"
+import { wrapper } from "../../store"
+import { fetchProductRequest } from "../../store/app/actions"
+import { END } from "redux-saga"
 
 const Product: NextPage = ({product}: any) => {
 
