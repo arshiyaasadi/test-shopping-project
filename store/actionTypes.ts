@@ -6,4 +6,5 @@ export const FETCH_PRODUCT_FAILURE = "FETCH_PRODUCT_FAILURE"
 
 //
 // Cart types
+export const FETCH_CART_DATA = "FETCH_CART_DATA"
 export const FETCH_CART_LIST = "FETCH_CART_LIST"

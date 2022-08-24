@@ -46,6 +46,7 @@ import {
     FETCH_PRODUCT_SUCCESS,
     FETCH_PRODUCT_FAILURE,
     FETCH_CART_LIST,
+    FETCH_CART_DATA,
 } from "../store/actionTypes"
 
 
@@ -94,6 +95,15 @@ export type FetchCartList = {
     payload: FetchCartListPayload
 }
 
+export interface FetchCartDataPayload {
+    cart: Cart[]
+}
+
+export type FetchCartData = {
+    type: typeof FETCH_CART_DATA
+    payload: FetchCartDataPayload
+}
+
 export interface FetchProductRequest {
     type: typeof FETCH_PRODUCT_REQUEST
 }
@@ -101,4 +111,4 @@ export interface FetchProductRequest {
 
 
 
-export type ProductActions = | FetchProductRequest | FetchProductSuccess | FetchProductFailure | FetchCartList
+export type ProductActions = | FetchProductRequest | FetchProductSuccess | FetchProductFailure | FetchCartList | FetchCartData

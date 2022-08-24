@@ -8,13 +8,33 @@ import styles from "../styles/components/Layout.module.sass"
 import { useRouter } from 'next/router'
 import { FaShoppingBag } from "react-icons/fa"
 import Link from 'next/link'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getCartSelector} from "../store/app/selectors";
+import {fetchCartData} from "../store/app/actions";
+import {Cart} from "../types/globalTypes";
 
 
 
 const DashboardNavbar: NextPage = () => {
-    const cart = useSelector(getCartSelector)
+    const dispatch = useDispatch()
+    const cart: Cart[] = useSelector(getCartSelector)
+    const [cartLength, setCartLength] = useState<number>(0)
+
+    // Set cart items in localstorage
+    useEffect(()=> {
+        if (cartLength || cart?.length) {
+            localStorage.setItem('shoppingCart', JSON.stringify(cart))
+            setCartLength(cart?.length)
+        }
+    }, [cart])
+
+    // Get cart items from localstorage
+    useEffect(()=> {
+        if (!cart?.length) {
+            const cart: Cart[] = JSON.parse(localStorage.getItem('shoppingCart') || '[]')
+            dispatch(fetchCartData({cart}))
+        }
+    }, [])
 
     return (
         <>

@@ -2,6 +2,7 @@ import {
     FETCH_PRODUCT_REQUEST,
     FETCH_PRODUCT_SUCCESS,
     FETCH_PRODUCT_FAILURE,
+    FETCH_CART_DATA,
     FETCH_CART_LIST
 } from "../actionTypes"
 
@@ -35,6 +36,11 @@ export default (state = initialState, action: ProductActions) => {
                 pending: false,
                 products: [],
                 error: action.payload.error,
+            }
+        case FETCH_CART_DATA:
+            return {
+                ...state,
+                cart: action.payload?.cart,
             }
         case FETCH_CART_LIST:
             // Get data from payload
