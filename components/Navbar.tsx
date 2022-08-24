@@ -13,8 +13,6 @@ import { getCartSelector } from "../store/app/selectors"
 import { fetchCartData } from "../store/app/actions"
 import { Cart } from "../types/action"
 
-
-
 const DashboardNavbar: NextPage = () => {
     const dispatch = useDispatch()
     const cart: Cart[] = useSelector(getCartSelector)

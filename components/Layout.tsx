@@ -74,8 +74,7 @@ const Layout = ({children, onRefresh, error, loading, setNotify}: LayoutDashboar
                 <Navbar />
             </div>
             <div className={styles.mainContainer}>
-                <div className={styles.main}>
-                    <main>
+                <main className={styles.main}>
                         {
                             isLoading ? (
                                 // When Loading is true
@@ -88,8 +87,7 @@ const Layout = ({children, onRefresh, error, loading, setNotify}: LayoutDashboar
                                 children
                             )
                         }
-                    </main>
-                </div>
+                </main>
             </div>
         </div>
     )
