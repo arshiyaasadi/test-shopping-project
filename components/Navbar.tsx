@@ -20,22 +20,24 @@ const DashboardNavbar: NextPage = () => {
         <>
             <header className={styles.Navbar}>
                 {/*
+                *** Logo
+                */}
+                <div>
+                    <Image src={images.logo} alt="logo images" layout="fill" />
+                </div>
+
+                {/*
                 *** Shopping Bag
                 */}
                 <div>
                     <Link href="/cart" >
                         <a>
-                            <span>{cart?.length ? cart?.length : ''}</span>
+                            {
+                                cart?.length ? <span>{cart?.length ? cart?.length : ''}</span> : ''
+                            }
                             <FaShoppingBag />
                         </a>
                     </Link>
-                </div>
-
-                {/*
-                *** Logo
-                */}
-                <div>
-                    <Image src={images.logo} alt="logo images" layout="fill" />
                 </div>
             </header>
         </>

@@ -1,6 +1,6 @@
 //
 // Home page
-import React from "react"
+import React, {useState} from "react"
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/pages/Home.module.sass'
@@ -21,6 +21,13 @@ const Home: NextPage = ({ appData }: any) => {
     const pending = useSelector(getPendingSelector)
     const error = useSelector(getErrorSelector)
 
+    // search
+    const [searchValue, setSearchValue] = useState<string>('')
+    const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
+        const {value}: string | any = e.target
+        setSearchValue(value)
+    }
+
     return (
         <Layout loading={pending} error={error}>
             <Head>
@@ -33,9 +40,25 @@ const Home: NextPage = ({ appData }: any) => {
                     Welcome to <a href="https://pelazio.com/ir-fa/">shopping website</a>
                 </h1>
 
+                {/* search box */}
+                <div className={styles.searchBox}>
+                    <label htmlFor="search">
+                        search:
+                        <input
+                            id={'search'}
+                            type={"search"}
+                            value={searchValue}
+                            onChange={(e)=> searchHandler(e)}/>
+                    </label>
+                </div>
+
+                {/* products */}
                 <div className={styles.productsContainer}>
                     {
-                        products.map((item: Product)=> <ProductItem productData={item} key={item?._id} />)
+                        products.map((item: Product)=> {
+                            if (item?.title?.toLowerCase()?.includes(searchValue.toLowerCase()))
+                                return <ProductItem productData={item} key={item?._id}/>
+                        })
                     }
                 </div>
             </div>

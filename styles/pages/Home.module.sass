@@ -18,6 +18,20 @@
 .main
   height: 100%
   margin-bottom: 40px
+  .searchBox
+    width: 100%
+    max-width: max-content
+    height: 60px
+    > label
+      display: flex
+      @include fullFlex
+      @include fontMedium
+      > input
+        height: 100%
+        width: 140px
+        border-bottom: 1px solid black
+        margin-left: 6px
+        @include fontMedium
   .productContainer
     width: 100%
     max-width: 1440px
